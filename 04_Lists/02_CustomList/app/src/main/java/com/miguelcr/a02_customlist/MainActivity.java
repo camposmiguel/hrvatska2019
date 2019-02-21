@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         students.add(new Student("Mario", 5.0f, "Android Course", "https://s3.amazonaws.com/uifaces/faces/twitter/mattchevy/128.jpg"));
         students.add(new Student("Mateo", 1.0f, "Android Course", "https://pbs.twimg.com/profile_images/1036348009993383936/83S0m8vv_400x400.jpg"));
         students.add(new Student("Rikardo", 3.0f, "Android Course", "https://pbs.twimg.com/profile_images/527584017189982208/l3wwN-l-_400x400.jpeg"));
-        students.add(new Student("Leonardo", 3.5f, "Android Course", "https://s3.amazonaws.com/uifaces/faces/twitter/mattsince87/128.jpg"));
+        students.add(new Student("rebecLeonardo", 3.5f, "Android Course", "https://s3.amazonaws.com/uifaces/faces/twitter/mattsince87/128.jpg"));
         students.add(new Student("Ivana", 5.0f, "Android Course", "https://s3.amazonaws.com/uifaces/faces/twitter/nzcode/128.jpg"));
 
         // 4. Adapter
