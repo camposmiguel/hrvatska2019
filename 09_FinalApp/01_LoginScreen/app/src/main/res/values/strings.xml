@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">01_LoginScreen</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_label_login">Login</string>
+    <string name="text_link_sign_up">If don\'t have an account, create one.</string>
+    <string name="btn_label_signup">Sign up</string>
+    <string name="text_link_login">If you have an account, log in.</string>
+    <string name="hint_username">Username</string>
 </resources>
