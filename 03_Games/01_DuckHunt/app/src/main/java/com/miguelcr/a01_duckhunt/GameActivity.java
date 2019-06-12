@@ -2,7 +2,10 @@ package com.miguelcr.a01_duckhunt;
 
 import android.content.DialogInterface;
 import android.graphics.Point;
+import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +29,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        // Load the font type
+        Typeface type = Typeface.createFromAsset(getAssets(),"pixel.ttf");
+
         // Hide the toolbar
         getSupportActionBar().hide();
 
@@ -33,6 +39,10 @@ public class GameActivity extends AppCompatActivity {
         tvTimer = findViewById(R.id.textViewTimer);
         tvDucks = findViewById(R.id.textViewDucks);
         duck = findViewById(R.id.imageViewDuck);
+
+        tvNick.setTypeface(type);
+        tvTimer.setTypeface(type);
+        tvDucks.setTypeface(type);
 
         // Extras information
         Bundle extras = getIntent().getExtras();
@@ -50,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void startCountDown() {
-        new CountDownTimer(5000, 1000) {
+        new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 tvTimer.setText(millisUntilFinished / 1000 + "s");
@@ -69,7 +79,7 @@ public class GameActivity extends AppCompatActivity {
         // Dialog configuration
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage("You'have hunted " + counter + "ducks."
+        builder.setMessage("You'have hunted " + counter + " ducks."
                 + "Do you want to restart the game?");
 
         builder.setTitle("Game over");
@@ -117,23 +127,37 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void randomDuckPosition() {
-        // 1. Get the screen size where we're running the app
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int screenWidth = size.x;
-        int screenHeight = size.y;
+        duck.setImageResource(R.drawable.duck_clicked);
 
-        int maxX = screenWidth - duck.getWidth();
-        int maxY = screenHeight - duck.getHeight();
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                duck.setImageResource(R.drawable.duck);
 
-        // 2. Generate a random X,Y position
-        int randomX = rand.nextInt((maxX - 0) + 1) + 0;
-        int randomY = rand.nextInt((maxY - 0) + 1) + 0;
+                //final MediaPlayer mp = MediaPlayer.create(this, R.raw.soho);
 
-        // 3. Move the duck to the new Random position
-        duck.setX(randomX);
-        duck.setY(randomY);
+                // 1. Get the screen size where we're running the app
+                Display display = getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+                int screenWidth = size.x;
+                int screenHeight = size.y;
+
+                int maxX = screenWidth - duck.getWidth();
+                int maxY = screenHeight - duck.getHeight();
+
+                // 2. Generate a random X,Y position
+                int randomX = rand.nextInt((maxX - 0) + 1) + 0;
+                int randomY = rand.nextInt((maxY - 0) + 1) + 0;
+
+                // 3. Move the duck to the new Random position
+                duck.setX(randomX);
+                duck.setY(randomY);
+            }
+        }, 500);
+
+
+
+
     }
 
 }
